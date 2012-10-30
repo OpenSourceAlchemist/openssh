@@ -3,7 +3,8 @@
 <% @settings.each do |key, value| %>
 <%  if key == "match" && value.kind_of?(Array) %>
 <%    value.each do |mg| %>
-<%      mg.each do |k, v| %>
+<%=     "#{key.split("_").map { |w| w.capitalize}.join} #{mg[0]}" %>
+<%      mg[1].each do |k, v| %>
 <%=       "#{k.split("_").map { |w| w.capitalize}.join} #{v}" %>
 <%      end %>
 <%    end %>
