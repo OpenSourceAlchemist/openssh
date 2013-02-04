@@ -2,6 +2,18 @@
 
 <% @settings.each do |key, value| %>
 <%  if key == "match" && value.kind_of?(Array) %>
+<%    next %>
+<%  elsif key != "match" && value.kind_of?(Array) %>
+<%    value.each do |item| %>
+<%=     "#{key.split("_").map { |w| w.capitalize}.join} #{item}" %>
+<%    end %>
+<%  else %>
+<%=   "#{key.split("_").map { |w| w.capitalize}.join} #{value}" %>
+<%  end %>
+<% end %>
+
+<% @settings.each do |key, value| %>
+<%  if key == "match" && value.kind_of?(Array) %>
 <%    value.each do |mg| %>
 <%=     "#{key.split("_").map { |w| w.capitalize}.join} #{mg[0]}" %>
 <%      mg[1].each do |k, v| %>
@@ -9,10 +21,6 @@
 <%      end %>
 <%    end %>
 <%  elsif key != "match" && value.kind_of?(Array) %>
-<%    value.each do |item| %>
-<%=     "#{key.split("_").map { |w| w.capitalize}.join} #{item}" %>
-<%    end %>
-<%  else %>
-<%=   "#{key.split("_").map { |w| w.capitalize}.join} #{value}" %>
+<%    next %>
 <%  end %>
 <% end %>
